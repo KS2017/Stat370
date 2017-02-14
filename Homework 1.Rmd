@@ -15,20 +15,55 @@ x <- seq(from=-10, to=10, by=.5)
 y <- quad(x,a=1,b=1)
 plot(x,y)
 ```
-First we tested quadratics with C=0.
+First we tested quadratics with C=0. 
+This produced the graph shown.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+## B=0
+```{r b}
+source('~/Desktop/qscript.R')
+x <- seq(from=-10, to=10, by=.5)
+y <- quad(x,a=1,c=1)
+plot(x,y)
 ```
+Next we tested quadratics with B=0. 
+This graph varied slightly from the previous one.
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+## A=0
+```{r a}
+source('~/Desktop/qscript.R')
+x <- seq(from=-10, to=10, by=.5)
+y <- quad(x,b=1,c=1)
+plot(x,y)
 ```
+Then we tested quadratics with A=0. 
+This produced a linear graph with a slope of 1 and a y intercept of 1.
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## A=0,B=0
+```{r ab}
+source('~/Desktop/qscript.R')
+x <- seq(from=-10, to=10, by=.5)
+y <- quad(x,c=1)
+plot(x,y)
+```
+We tested A=0 and B=0. 
+This produced a horizontal line with a y intercept of 1.
+
+## A=0,C=0
+```{r ac}
+source('~/Desktop/qscript.R')
+x <- seq(from=-10, to=10, by=.5)
+y <- quad(x,b=1)
+plot(x,y)
+```
+Then we tested A=0 and C=0. 
+This produced a linear graph with a slope of 1 and an intercept at y=0, x=0.
+
+## B=0,C=0
+```{r bc}
+source('~/Desktop/qscript.R')
+x <- seq(from=-10, to=10, by=.5)
+y <- quad(x,a=1)
+plot(x,y)
+```
+Finally we tested quadratics with B=0 and C=0. 
+This produced a quadratic graph with its base at y=0, x=0.
