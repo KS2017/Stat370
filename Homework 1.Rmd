@@ -1,0 +1,34 @@
+---
+title: "Homework 1"
+author: "Katie Schaper"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## C=0
+```{r c}
+source('~/Desktop/qscript.R')
+x <- seq(from=-10, to=10, by=.5)
+y <- quad(x,a=1,b=1)
+plot(x,y)
+```
+First we tested quadratics with C=0.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
