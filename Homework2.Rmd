@@ -1,0 +1,35 @@
+---
+title: "Homework2"
+author: "Katie Schaper"
+output: html_document
+---
+
+## Dataset "Baltimore Parks"
+
+Variables in the dataset "Baltimore Parks"
+
+```{r Variables}
+source('~/Documents/HomworkStat370/Stat370/Homework 2.R')
+names(MyData)
+```
+
+First 5 rows of the dataset
+
+```{r Head}
+source('~/Documents/HomworkStat370/Stat370/Homework 2.R')
+head(MyData, n=5)
+```
+
+Parks by city district
+
+```{r Plot}
+source('~/Documents/HomworkStat370/Stat370/Homework 2.R')
+plot(MyData$district)
+```
+
+Summary statistics of park size in acres
+
+```{r Summary}
+source('~/Documents/HomworkStat370/Stat370/Homework 2.R')
+summary(MyData$acres)
+```

@@ -1,0 +1,34 @@
+---
+title: "FinalProject"
+output: html_document
+---
+
+```{r code1}
+library("rworldmap")
+df <- read.csv("LimitedData.csv")
+SPDF <- joinCountryData2Map(df, joinCode = "ISO3", nameJoinColumn = "ISO3")
+names(df)
+```
+
+
+```{r code2}
+mapCountryData(SPDF, nameColumnToPlot = "Population", catMethod = "pretty", mapTitle = 'Total Population')
+```
+<!-- mapCountryData(SPDF, nameColumnToPlot = "PopGrowth", catMethod = "pretty", mapTitle = 'Total Population Growth') -->
+<!-- hist(df$PopGrowth, breaks = 30, main = 'Population Growth', xlab = 'Rate of Change') -->
+<!-- mapCountryData(SPDF, nameColumnToPlot = "Urbanization", catMethod = "pretty", mapTitle = 'Rate of Urbanization') -->
+<!-- hist(df$Urbanization, breaks = 20, main = 'Urbanization', xlab = 'Rate of Urbanization') -->
+<!-- summary(df$Urbanization) -->
+<!-- plot(df$PopGrowth, df$Urbanization, xlab = 'Population Growth', ylab = 'Rate of Urbanization') -->
+<!-- mapCountryData(SPDF, nameColumnToPlot = "MedianAge", catMethod = "pretty", mapTitle = 'Median Age') -->
+<!-- hist(df$MedianAge, breaks = 50, main = 'Median Age', xlab = 'Age') -->
+<!-- plot(df$GDP, df$MedianAge, xlab = 'GDP', ylab = 'Median Age') -->
+<!-- plot(df$MedianAge, df$PopGrowth, xlab = 'Median Age', ylab = 'Population Growth') -->
+<!-- plot(df$Urbanization, df$MedianAge, xlab = 'Rate of Urbanization', ylab = 'Median Age') -->
+<!-- mapCountryData(SPDF, nameColumnToPlot = "Mliteracy", catMethod = "pretty", mapTitle = 'Male Literacy Rate') -->
+<!-- mapCountryData(SPDF, nameColumnToPlot = "Fliteracy", catMethod = "pretty", mapTitle = 'Female Literacy Rate') -->
+<!-- hist(df$Mliteracy, breaks = 20, main = 'Male Literacy', xlab = 'Literacy Rate') -->
+<!-- hist(df$Fliteracy, breaks = 20, main = 'Male Literacy', xlab = 'Literacy Rate') -->
+<!-- plot(df$Mliteracy, df$Fliteracy, xlab = 'Male Literacy Rate', ylab = 'Female Literacy Rate') -->
+<!-- mapCountryData(SPDF, nameColumnToPlot = "LiteracyDif", catMethod = "pretty", mapTitle = 'Difference in Literacy Rate Between Males and Females') -->
+<!-- summary(df$LiteracyDif) -->
