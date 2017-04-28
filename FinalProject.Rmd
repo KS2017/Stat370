@@ -15,6 +15,7 @@ names(df)
 
 ## Total Population
 This map shows the total population of 218 countries and territories. The largest country, which is China, has a population of 1,371,220,000. The smallest country, which is the Holy See, has a population of 451.
+
 ```{r code2, echo=FALSE}
 mapCountryData(SPDF, nameColumnToPlot = "Population", catMethod = "logFixedWidth", mapTitle = 'Total Population')
 ```
