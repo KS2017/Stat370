@@ -1,34 +1,114 @@
 ---
-title: "FinalProject"
+title: "Final Project"
+author: "Katie Schaper"
 output: html_document
 ---
 
-```{r code1}
+For my final project, I mapped population data from the United Nations and Central Intelligence Agency using the package RWorldMap.
+
+```{r code1, echo=FALSE, results='hide', message=FALSE}
 library("rworldmap")
 df <- read.csv("LimitedData.csv")
 SPDF <- joinCountryData2Map(df, joinCode = "ISO3", nameJoinColumn = "ISO3")
 names(df)
 ```
 
-
-```{r code2}
-mapCountryData(SPDF, nameColumnToPlot = "Population", catMethod = "pretty", mapTitle = 'Total Population')
+## Total Population
+This map shows the total population of 218 countries and territories. The largest country, which is China, has a population of 1,371,220,000. The smallest country, which is the Holy See, has a population of 451.
+```{r code2, echo=FALSE}
+mapCountryData(SPDF, nameColumnToPlot = "Population", catMethod = "logFixedWidth", mapTitle = 'Total Population')
 ```
-<!-- mapCountryData(SPDF, nameColumnToPlot = "PopGrowth", catMethod = "pretty", mapTitle = 'Total Population Growth') -->
-<!-- hist(df$PopGrowth, breaks = 30, main = 'Population Growth', xlab = 'Rate of Change') -->
-<!-- mapCountryData(SPDF, nameColumnToPlot = "Urbanization", catMethod = "pretty", mapTitle = 'Rate of Urbanization') -->
-<!-- hist(df$Urbanization, breaks = 20, main = 'Urbanization', xlab = 'Rate of Urbanization') -->
-<!-- summary(df$Urbanization) -->
-<!-- plot(df$PopGrowth, df$Urbanization, xlab = 'Population Growth', ylab = 'Rate of Urbanization') -->
-<!-- mapCountryData(SPDF, nameColumnToPlot = "MedianAge", catMethod = "pretty", mapTitle = 'Median Age') -->
-<!-- hist(df$MedianAge, breaks = 50, main = 'Median Age', xlab = 'Age') -->
-<!-- plot(df$GDP, df$MedianAge, xlab = 'GDP', ylab = 'Median Age') -->
-<!-- plot(df$MedianAge, df$PopGrowth, xlab = 'Median Age', ylab = 'Population Growth') -->
-<!-- plot(df$Urbanization, df$MedianAge, xlab = 'Rate of Urbanization', ylab = 'Median Age') -->
-<!-- mapCountryData(SPDF, nameColumnToPlot = "Mliteracy", catMethod = "pretty", mapTitle = 'Male Literacy Rate') -->
-<!-- mapCountryData(SPDF, nameColumnToPlot = "Fliteracy", catMethod = "pretty", mapTitle = 'Female Literacy Rate') -->
-<!-- hist(df$Mliteracy, breaks = 20, main = 'Male Literacy', xlab = 'Literacy Rate') -->
-<!-- hist(df$Fliteracy, breaks = 20, main = 'Male Literacy', xlab = 'Literacy Rate') -->
-<!-- plot(df$Mliteracy, df$Fliteracy, xlab = 'Male Literacy Rate', ylab = 'Female Literacy Rate') -->
-<!-- mapCountryData(SPDF, nameColumnToPlot = "LiteracyDif", catMethod = "pretty", mapTitle = 'Difference in Literacy Rate Between Males and Females') -->
-<!-- summary(df$LiteracyDif) -->
+```{r code2a, echo=FALSE}
+summary(df$Population)
+```
+## Population Growth
+This map demonstrates the expected percent change in population between 2016 and 2017. The percent change is calculated using the expected birth rate, death rate, and rate of migration in and out of the country. The largest changes in migration occur primarily in Africa and the Middle East. The highest rate of population growth is in South Sudan, which is expected to see a 3.92% increase in population in the next year. The lowest rate of population growth is in the Cook Islands, which is expected to see a 2.88% decrease in population in the next year. As the histogram demonstrates, population growth data is slightly skewed to the right. The data has a mean of 1.084 and standard deviation of 1.037.
+
+```{r code3, echo=FALSE}
+mapCountryData(SPDF, nameColumnToPlot = "PopGrowth", catMethod = "pretty", mapTitle = 'Population Growth')
+```
+```{r code4, echo=FALSE}
+hist(df$PopGrowth, breaks = 30, main = 'Population Growth', xlab = 'Rate of Change')
+```
+```{r code4a, echo=FALSE}
+summary(df$PopGrowth)
+```
+
+## Urbanization
+This map shows the average annual rate of urbanization between 2010 and 2015. The highest rate occurred in Oman, which registered 8.54%. The lowest occurred in Brunei, which registered -1.79%. The histogram for this data is skewed to the right. The mean rate of urbanization is 1.852%. There is one outlier, which is Oman.
+
+```{r code5, echo=FALSE, message=FALSE}
+mapCountryData(SPDF, nameColumnToPlot = "Urbanization", catMethod = "pretty", mapTitle = 'Rate of Urbanization')
+```
+```{r code6, echo=FALSE}
+hist(df$Urbanization, breaks = 20, main = 'Rate of Urbanization', xlab = 'Rate of Urbanization')
+```
+```{r code7, echo=FALSE}
+summary(df$Urbanization)
+```
+
+As the previous two maps have demonstrated, the highest rates of population growth and urbanization occur primarily in the Africa and the Middle East. This scatter plot demonstrates that there is there in fact a correlation between these two variables.
+
+```{r code8, echo=FALSE}
+plot(df$PopGrowth, df$Urbanization, xlab = 'Population Growth', ylab = 'Rate of Urbanization')
+```
+
+## Median Age
+This map demonstrates the median age of citizens in 218 countries. The world median age is 30.19.
+
+The 5 countries with the highest median ages are: Monaco	(52.4), Japan	(46.9), Germany	(46.8), Saint Pierre and Miquelon		(45.9), and the United States	(45.6)
+
+The 5 countries with the lowest median ages are: Niger	(15.3), Uganda	(15.7), Mali (16.2), Malawi (16.5), and Zambia	(16.7) 
+
+```{r code9, echo=FALSE, message=FALSE}
+mapCountryData(SPDF, nameColumnToPlot = "MedianAge", catMethod = "pretty", mapTitle = 'Median Age')
+```
+```{r code10, echo=FALSE}
+hist(df$MedianAge, breaks = 50, main = 'Median Age', xlab = 'Age')
+```
+
+This plot shows the relationship between a county's GDP and its median age.
+
+```{r code11, echo=FALSE}
+plot(df$GDP, df$MedianAge, xlab = 'GDP', ylab = 'Median Age')
+```
+
+This plot demonstrate that there is a negative correlation between the rate of population growth and median age.
+
+```{r code12, echo=FALSE}
+plot(df$MedianAge, df$PopGrowth, xlab = 'Median Age', ylab = 'Population Growth')
+```
+
+## Literacy
+These two maps demonstrate the literacy rates of males and females over the age of 15. Notably, data is missing from the United States, Australia, and most of Western Europe. These countries do not report literacy data to UNESCO.
+
+```{r code14, echo=FALSE, message=FALSE}
+mapCountryData(SPDF, nameColumnToPlot = "Mliteracy", catMethod = "pretty", mapTitle = 'Male Literacy Rate')
+```
+```{r code15, echo=FALSE, message=FALSE}
+mapCountryData(SPDF, nameColumnToPlot = "Fliteracy", catMethod = "pretty", mapTitle = 'Female Literacy Rate')
+```
+
+```{r code16, echo=FALSE}
+hist(df$Mliteracy, breaks = 20, main = 'Male Literacy', xlab = 'Literacy Rate')
+```
+```{r code17, echo=FALSE}
+hist(df$Fliteracy, breaks = 20, main = 'Female Literacy', xlab = 'Literacy Rate')
+```
+```{r code18, echo=FALSE}
+plot(df$Mliteracy, df$Fliteracy, xlab = 'Male Literacy Rate', ylab = 'Female Literacy Rate')
+```
+
+This map shows the difference in literacy rates between males and females over the age of 15. The largest difference in literacy rates occurs in Yemen, where 85.1% of males over the age of 15 are literate and 55% of females over the age of 15 are literate. The mean difference between male and female literacy rates throughout the world is 7.19%. 
+
+```{r code19, echo=FALSE}
+mapCountryData(SPDF, nameColumnToPlot = "LiteracyDif", catMethod = "pretty", mapTitle = 'Difference in Literacy Rate Between Males and Females')
+```
+```{r code20, echo=FALSE}
+summary(df$LiteracyDif)
+```
+
+
+
+
+ 
